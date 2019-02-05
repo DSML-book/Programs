@@ -1,4 +1,4 @@
-""" snippets.py  test slava"""
+""" snippets.py """
 
 import pandas as pd
 
