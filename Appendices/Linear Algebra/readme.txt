@@ -1,4 +1,4 @@
-The files contain Python code for replicating the material of Appendices in Kroese et al. Mathematical and Statistical Methods
+The files contain Python code for replicating the material of Linear Algebra Appendix in Kroese et al. Mathematical and Statistical Methods
 for Data Science and Machine Learning (2019). 
 
 This code is free to use for academic purposes only, provided that the book is cited. 
