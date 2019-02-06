@@ -23,9 +23,11 @@ for i in p:
     yy = np.polyval(np.flip(betahat[i]), xx)
     plots.append(plt.plot(xx, yy)[0])
 
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 plt.xlabel(r'$u$')
 plt.ylabel(r'$h^{\mathcal{G}_p}(u)$')
 plt.legend(plots,('data points', 'true','$p=2$, underfit',
                   '$p=4$, correct','$p=16$, overfit','d'))
 plt.savefig('polyfitpy.pdf',format='pdf')
 plt.show()
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -17,8 +17,10 @@ yy = np.polyval(np.flip(beta), xx)
 plt.plot(u, y, '.', markersize=8)
 plt.plot(xx, yy, '--',linewidth=3)
 
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 plt.xlabel(r'$u$')
 plt.ylabel(r'$h^*(u)$')
 plt.legend(['data points','true'])
 plt.savefig('polydatpy.pdf',format='pdf')
 plt.show()
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

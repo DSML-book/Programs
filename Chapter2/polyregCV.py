@@ -26,6 +26,7 @@ for p in p_range:
         cv[j, p-1] = sum(loss) / n
         j += 1
 
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 p1 = plt.plot(p_range, cv[0, :], 'k-.', p_range, cv[0, :], 'k.', markersize=10)[0]
 p2 = plt.plot(p_range, cv[1, :], 'r', p_range, cv[1, :], 'r.', markersize=10)[0]
 p3 = plt.plot(p_range, cv[2, :], 'b--', p_range, cv[2, :], 'b.', markersize=10)[0]
@@ -36,4 +37,5 @@ plt.legend((p1,p2,p3),('$K$=5','$K$=10','$K$=100'))
 plt.tight_layout()
 plt.savefig('crossvalpy.pdf',format='pdf')
 plt.show()
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
