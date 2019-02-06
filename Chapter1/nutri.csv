@@ -1,4 +1,4 @@
-gender,situation,tea,coffee,height,weight,age,meat,fish,raw_fruit,cooked_fruit_veg,chocol,fat 
+gender,situation,tea,coffee,height,weight,age,meat,fish,raw_fruit,cooked_fruit_veg,chocol,fat
 Female,1,0,0,151.0,58,72,4,3,1,4,5,6
 Female,1,1,1,162.0,60,68,5,2,5,5,1,4
 Female,1,0,4,162.0,75,78,3,1,5,2,5,4
