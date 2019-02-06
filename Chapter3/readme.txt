@@ -1,1 +1,6 @@
+The files contain Python code for replicating the material of Chapter 3 in Kroese et al. Mathematical and Statistical Methods
+for Data Science and Machine Learning (2019). 
 
+This code is free to use for academic purposes only, provided that the book is cited. 
+This code comes without technical support of any kind. It is expected to reproduce the results reported in the book. 
+Under no circumstances will the author be held responsible for any use of this code in any way.
