@@ -1,5 +1,4 @@
-# %%
-''' nearestnb.py '''
+""" nearestnb.py """
 
 import numpy as np
 from numpy.random import rand,randn 
