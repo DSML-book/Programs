@@ -8,7 +8,7 @@ for c in "123456":
     except:                       # otherwise
         pass                      # do nothing
 
-uname = " https://people.smp.uq.edu.au/DirkKroese/DSML/"
+uname = "https://github.com/DSML-book/Programs/tree/master/Appendices/Python Primer/"
 fname = " ataleof2cities.txt"
 r = requests.get(uname + fname )
 print (r.text)
