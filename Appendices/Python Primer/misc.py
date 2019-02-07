@@ -9,7 +9,7 @@ for c in "123456":
         pass                      # do nothing
 
 uname = "https://github.com/DSML-book/Programs/tree/master/Appendices/Python Primer/"
-fname = " ataleof2cities.txt"
+fname = "ataleof2cities.txt"
 r = requests.get(uname + fname )
 print (r.text)
 open('MyDir1/ato2c.txt', 'wb').write(r.content) # write to a file
