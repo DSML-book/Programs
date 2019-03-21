@@ -1,4 +1,4 @@
-""" image_classification_nn.py """
+""" ImageClassificationPytorch.py """
 
 import torch 
 import torch.nn as nn
@@ -110,7 +110,7 @@ for epoch in range(num_epochs):
         optimizer.step()
         
         losses.append(loss.item())
-    if(epoch ==1 or epoch % 10 == 0):    
+    if(epoch % 10 == 0):    
         print ("Epoch : ", epoch, ", Training Loss: ",  loss.item())
 
 # evaluate on the test set
