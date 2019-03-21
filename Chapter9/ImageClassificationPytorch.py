@@ -134,7 +134,6 @@ plt.plot(np.array(losses)[10:len(losses)])
 plt.xlabel(r'{iteration}',fontsize=20)
 plt.ylabel(r'{Batch Loss}',fontsize=20)
 plt.subplots_adjust(top=0.8)
-plt.show()
 plt.savefig("fashionloss.pdf",bbox_inches = "tight")
-
+plt.show()
 
