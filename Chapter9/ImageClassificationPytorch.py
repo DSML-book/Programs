@@ -98,7 +98,7 @@ optimizer = torch.optim.Adam(cnn.parameters(), lr=learning_rate)
 
 # the learning loop
 losses = []
-for epoch in range(num_epochs):
+for epoch in range(1,num_epochs+1):
     for i, (images, labels) in enumerate(train_loader):
         images = Variable(images.float()).to(device=device)
         labels = Variable(labels).to(device=device)
@@ -110,7 +110,7 @@ for epoch in range(num_epochs):
         optimizer.step()
         
         losses.append(loss.item())
-    if(epoch % 10 == 0):    
+    if(epoch == 1 or epoch % 10 == 0):    
         print ("Epoch : ", epoch, ", Training Loss: ",  loss.item())
 
 # evaluate on the test set
@@ -130,10 +130,9 @@ plt.rc('text', usetex=True)
 plt.rc('font', family='serif',size=20)
 plt.tight_layout()
       
-plt.plot(np.array(losses)[10:len(losses)])
+plt.plot(np.array(losses)[10:1000])
 plt.xlabel(r'{iteration}',fontsize=20)
 plt.ylabel(r'{Batch Loss}',fontsize=20)
 plt.subplots_adjust(top=0.8)
 plt.savefig("fashionloss.pdf",bbox_inches = "tight")
 plt.show()
-
