@@ -86,86 +86,81 @@ def backward(W,b,X,y):
 
 
 
-if __name__ == "__main__":
-    #%%
-    #np.random.seed(1234)    
-    # import data
-    data = np.genfromtxt('polyreg.csv',delimiter=',')
-    X = data[:,0].reshape(-1,1)
-    y = data[:,1].reshape(-1,1)
+#%%
+# import data
+data = np.genfromtxt('polyreg.csv',delimiter=',')
+X = data[:,0].reshape(-1,1)
+y = data[:,1].reshape(-1,1)
     
     # Network setup 
-    p = [X.shape[1],20,20,1] # size of layers
-    L = len(p)-1             # number of layers
-    W,b = initialize(p) # initialize weight matrices and bias vectors    
-    S = RELU
-    
-    
-    
-    
-    batch_size = 20
-    lr = 0.005
-    beta = list2vec(W,b)
-    loss_arr = []
-    n = len(X)
-    num_epochs = 10000
-    print("epoch | batch loss")
-    print("----------------------------")
-    for epoch in range(1,num_epochs+1):
-        batch_idx = np.random.choice(n,batch_size)
-        batch_X = X[batch_idx].reshape(-1,1)
-        batch_y=y[batch_idx].reshape(-1,1)      
-        dC_dW, dC_db, loss = backward(W,b,batch_X,batch_y)
-        d_beta = list2vec(dC_dW,dC_db)    
-        loss_arr.append(loss.flatten()[0])
-        if(epoch==1 or np.mod(epoch,1000)==0):
-            print(epoch,": ",loss.flatten()[0])
-        beta = beta - lr*d_beta
-        W,b = vec2list(beta,p)
+p = [X.shape[1],20,20,1] # size of layers
+L = len(p)-1             # number of layers
+W,b = initialize(p) # initialize weight matrices and bias vectors    
+S = RELU
+        
+batch_size = 20
+lr = 0.005
+beta = list2vec(W,b)
+loss_arr = []
+n = len(X)
+num_epochs = 10000
+print("epoch | batch loss")
+print("----------------------------")
+for epoch in range(1,num_epochs+1):
+    batch_idx = np.random.choice(n,batch_size)
+    batch_X = X[batch_idx].reshape(-1,1)
+    batch_y=y[batch_idx].reshape(-1,1)      
+    dC_dW, dC_db, loss = backward(W,b,batch_X,batch_y)
+    d_beta = list2vec(dC_dW,dC_db)    
+    loss_arr.append(loss.flatten()[0])
+    if(epoch==1 or np.mod(epoch,1000)==0):
+        print(epoch,": ",loss.flatten()[0])
+    beta = beta - lr*d_beta
+    W,b = vec2list(beta,p)
     
     # calculate the loss of the entire training set
-    dC_dW, dC_db, loss = backward(W,b,X,y)
-    print("entire training set loss = ",loss.flatten()[0])
+dC_dW, dC_db, loss = backward(W,b,X,y)
+print("entire training set loss = ",loss.flatten()[0])
     
     
-    #%%
-    xx = np.arange(0,1,0.01)
-    y_preds = np.zeros_like(xx)
+#%%
+xx = np.arange(0,1,0.01)
+y_preds = np.zeros_like(xx)
     
-    for i in range(len(xx)): 
-        a, _, _ = feedforward(xx[i],W,b)
-        y_preds[i],  = a[L]
+for i in range(len(xx)): 
+    a, _, _ = feedforward(xx[i],W,b)
+    y_preds[i],  = a[L]
     
-    plt.plot(X,y, 'r.', markersize = 4,label = 'y')
-    plt.plot(np.array(xx), y_preds, 'b',label = 'fit')
+plt.plot(X,y, 'r.', markersize = 4,label = 'y')
+plt.plot(np.array(xx), y_preds, 'b',label = 'fit')
     
-    plt.legend()
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.show()
+plt.legend()
+plt.xlabel('x')
+plt.ylabel('y')
+plt.show()
     
-    plt.plot(np.array(loss_arr), 'b')
-    plt.xlabel('iteration')
-    plt.ylabel('Training Loss')
-    plt.show()
-    
-    
+plt.plot(np.array(loss_arr), 'b')
+plt.xlabel('iteration')
+plt.ylabel('Training Loss')
+plt.show()
     
     
-    #%% latex plots
-    plt.rc('text', usetex=True)
-    plt.rc('font', family='serif',size=25)
-    plt.tight_layout()
-    plt.clf()
-    xx = np.arange(0,1,0.01)
-    y_preds = np.zeros_like(xx)
     
-    for i in range(len(xx)): 
-        a, _, _ = feedforward(xx[i],W,b)
-        y_preds[i],  = a[L]
     
-    plt.plot(X,y, 'r.', markersize = 4, label='$y$')
-    plt.plot(np.array(xx), y_preds, 'b',label = 'fit')
+#%% latex plots
+plt.rc('text', usetex=True)
+plt.rc('font', family='serif',size=25)
+plt.tight_layout()
+plt.clf()
+xx = np.arange(0,1,0.01)
+y_preds = np.zeros_like(xx)
+    
+for i in range(len(xx)): 
+    a, _, _ = feedforward(xx[i],W,b)
+    y_preds[i],  = a[L]
+    
+plt.plot(X,y, 'r.', markersize = 4, label='$y$')
+plt.plot(np.array(xx), y_preds, 'b',label = 'fit')
     
     #beta = np.array([[10, -140, 400, -250]]).T
     #yy = np.polyval(np.flip(beta), xx)
@@ -174,16 +169,16 @@ if __name__ == "__main__":
     
     ###########################################################
     
-    plt.legend()
-    plt.xlabel('$x$',fontsize=30)
-    plt.ylabel('$y$',fontsize=30)
-    plt.savefig("nnpolyreg1.pdf",bbox_inches = "tight")
-    plt.show()
+plt.legend()
+plt.xlabel('$x$',fontsize=30)
+plt.ylabel('$y$',fontsize=30)
+plt.savefig("nnpolyreg1.pdf",bbox_inches = "tight")
+plt.show()
     
-    plt.plot(np.array(loss_arr), 'b', label = 'Training Loss')
-    plt.xlabel(r'{iteration}',fontsize=30)
-    plt.ylabel(r'{Training Loss}',fontsize=30)
+plt.plot(np.array(loss_arr), 'b', label = 'Training Loss')
+plt.xlabel(r'{iteration}',fontsize=30)
+plt.ylabel(r'{Training Loss}',fontsize=30)
     
-    plt.savefig("nnpolyreg2.pdf",bbox_inches = "tight")
+plt.savefig("nnpolyreg2.pdf",bbox_inches = "tight")
     
-    plt.show()
+plt.show()
