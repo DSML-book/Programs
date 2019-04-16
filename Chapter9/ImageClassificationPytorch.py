@@ -85,8 +85,8 @@ class CNN(nn.Module):
 num_epochs = 50
 learning_rate = 0.001
 
-#device = torch.device ('cpu')
-device = torch.device ('cuda') # Uncomment this to run on GPU    
+device = torch.device ('cpu')
+#device = torch.device ('cuda') # Uncomment this to run on GPU    
     
 #instance of the Conv Net
 cnn = CNN()
@@ -127,12 +127,12 @@ print("Test Accuracy of the model on the 10000 training test images: ", (100 * c
 
 # plot
 plt.rc('text', usetex=True)
-plt.rc('font', family='serif',size=20)
+plt.rc('font', family='serif',size=12)
 plt.tight_layout()
       
 plt.plot(np.array(losses)[10:1000])
-plt.xlabel(r'{iteration}',fontsize=20)
-plt.ylabel(r'{Batch Loss}',fontsize=20)
+plt.xlabel(r'{iteration}',fontsize=12)
+plt.ylabel(r'{Batch Loss}',fontsize=12)
 plt.subplots_adjust(top=0.8)
 plt.savefig("fashionloss.pdf",bbox_inches = "tight")
 plt.show()

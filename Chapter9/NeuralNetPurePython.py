@@ -130,9 +130,10 @@ y_preds = np.zeros_like(xx)
 for i in range(len(xx)): 
     a, _, _ = feedforward(xx[i],W,b)
     y_preds[i],  = a[L]
-    
+
+plt.plot(np.array(xx), y_preds, 'b',label = 'fit')    
 plt.plot(X,y, 'r.', markersize = 4,label = 'y')
-plt.plot(np.array(xx), y_preds, 'b',label = 'fit')
+
     
 plt.legend()
 plt.xlabel('x')
@@ -149,7 +150,7 @@ plt.show()
     
 #%% latex plots
 plt.rc('text', usetex=True)
-plt.rc('font', family='serif',size=25)
+plt.rc('font', family='serif',size=20)
 plt.tight_layout()
 plt.clf()
 xx = np.arange(0,1,0.01)
@@ -158,9 +159,10 @@ y_preds = np.zeros_like(xx)
 for i in range(len(xx)): 
     a, _, _ = feedforward(xx[i],W,b)
     y_preds[i],  = a[L]
-    
+
+plt.plot(np.array(xx), y_preds, 'b',label = 'fit')    
 plt.plot(X,y, 'r.', markersize = 4, label='$y$')
-plt.plot(np.array(xx), y_preds, 'b',label = 'fit')
+
     
     #beta = np.array([[10, -140, 400, -250]]).T
     #yy = np.polyval(np.flip(beta), xx)
@@ -170,14 +172,16 @@ plt.plot(np.array(xx), y_preds, 'b',label = 'fit')
     ###########################################################
     
 plt.legend()
-plt.xlabel('$x$',fontsize=30)
-plt.ylabel('$y$',fontsize=30)
+#plt.xlabel('$x$',fontsize=30)
+#plt.ylabel('$y$',fontsize=30)
+plt.xlabel('input $u$',fontsize=20)
+plt.ylabel('output $y$',fontsize=20)
 plt.savefig("nnpolyreg1.pdf",bbox_inches = "tight")
 plt.show()
     
-plt.plot(np.array(loss_arr), 'b', label = 'Training Loss')
-plt.xlabel(r'{iteration}',fontsize=30)
-plt.ylabel(r'{Training Loss}',fontsize=30)
+plt.plot(np.array(loss_arr), 'b', label = 'Batch Loss')
+plt.xlabel(r'{iteration}')
+plt.ylabel(r'{Batch Loss}')
     
 plt.savefig("nnpolyreg2.pdf",bbox_inches = "tight")
     
