@@ -45,8 +45,8 @@ fit.pvalues[1]
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 model = ols("height~shoe+weight", data=survey)
 fit = model.fit ()
-axes = pd.tools.plotting.scatter_matrix (
-survey [['height','shoe','weight']])
+axes = pd.plotting.scatter_matrix(
+survey[['height','shoe','weight']])
 plt.show()
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 fit.summary()
