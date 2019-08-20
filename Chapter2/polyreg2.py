@@ -25,7 +25,7 @@ for i in p:
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 plt.xlabel(r'$u$')
-plt.ylabel(r'$h^{\mathcal{G}_p}(u)$')
+plt.ylabel(r'$h^{\mathcal{H}_p}_{\tau}(u)$')
 plt.legend(plots,('data points', 'true','$p=2$, underfit',
                   '$p=4$, correct','$p=16$, overfit','d'))
 plt.savefig('polyfitpy.pdf',format='pdf')
