@@ -1,5 +1,7 @@
 """ kde.py """
-def kde(data, n=2**14, MIN=None, MAX=None):
+import matplotlib.pyplot as plt
+
+def kde(data, n=2**14, MIN=None, MAX=None, plot=False, label = []):
 #==============================================================================
 # Reliable and extremely fast kernel density estimator for one-dimensional data;
 #        Gaussian kernel is assumed and the bandwidth is chosen automatically;
@@ -16,6 +18,9 @@ def kde(data, n=2**14, MIN=None, MAX=None):
 #   MIN, MAX  - defines the interval [MIN,MAX] on which the density estimate is constructed;
 #               the default values of MIN and MAX are:
 #               MIN=min(data)-Range/10 and MAX=max(data)+Range/10, where Range=max(data)-min(data);
+#    plot     -  (True/False) whether or not to produce a plot 
+#    label    -  (string) label to apply to kde plot 
+    
 # OUTPUTS:
 #   bandwidth - the optimal bandwidth (Gaussian kernel assumed);
 #     density - column vector of length 'n' with the values of the density
@@ -93,12 +98,18 @@ def kde(data, n=2**14, MIN=None, MAX=None):
     n=int(2**np.ceil(np.log2(n))) #round up n to the next power of 2;
     
 	#define the default  interval [MIN,MAX]
+    
     if MAX == None or MIN == None:
         minimum = min(data)
         maximum = max(data)
         Range   = maximum - minimum
-        MIN=minimum-Range/10
-        MAX=maximum+Range/10
+    
+        if MAX == None:
+            MAX=maximum+Range/10
+        
+        if MIN == None:
+            MIN=minimum-Range/10
+       
 
 	# set up the grid over which the density estimate is computed;
     R=MAX-MIN; dx=R/(n-1)
@@ -138,10 +149,17 @@ def kde(data, n=2**14, MIN=None, MAX=None):
 	#take the rescaling into account if the bandwidth value is required
     bandwidth_cdf=np.sqrt(t_cdf)*R
 
+    if plot==True:
+        if label: 
+            plt.plot(xmesh, density, label = label)
+            plt.legend()
+        else: 
+             plt.plot(xmesh, density)
+        plt.ylim(bottom=0)  
+      
+
     return [bandwidth,density,xmesh,cdf]
 	#==========================================================================  
-
-
 
 
 
