@@ -25,8 +25,8 @@ nutri.info()
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 DICT = {1: 'Male', 2:'Female'} # dictionary specifies replacement
 nutri['gender'] = nutri['gender'].replace (DICT)
-nutri['gender'] = nutri['gender'].astype ('category')
-nutri['height'] = nutri['height'].astype (float)
+nutri['gender'] = nutri['gender'].astype('category')
+nutri['height'] = nutri['height'].astype(float)
 nutri.to_csv('nutri.csv',index = False)
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 nutri = pd.read_csv('nutri.csv')
@@ -36,20 +36,22 @@ nutri['fat'].value_counts()
 pd.crosstab(nutri.gender, nutri.situation)
 pd.crosstab(nutri.gender, nutri.situation, margins =True)
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-nutri['height'].mean ()
-nutri['height'].quantile (q =[0.25 ,0.5 ,0.75])
-nutri['height'].max() - nutri['height'].min ()
-round( nutri ['height'].var(), 2) # round to two decimal places
-round( nutri ['height'].std(), 2)
-nutri['height'].describe ()
+nutri['height'].mean()
+nutri['height'].quantile(q =[0.25 ,0.5 ,0.75])
+nutri['height'].max() - nutri['height'].min()
+round(nutri['height'].var(), 2) # round to two decimal places
+round(nutri['height'].std(), 2)
+nutri['height'].describe()
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+DICT_SITUATION = {2:"Couple",1:"Single",3:"Family"}
+nutri['situation'] = nutri['situation'].replace(DICT_SITUATION) # show situation instead of integers
 width = 0.35 # the width of the bars
 x = [0, 0.8 , 1.6] # the bar positions on x-axis
-situation_counts = nutri ['situation'].value_counts ()
+situation_counts = nutri['situation'].value_counts()
 plt.bar(x, situation_counts , width , edgecolor = 'black')
 plt.xticks(x, situation_counts.index)
 plt.show()
@@ -58,17 +60,17 @@ plt.boxplot(nutri['age'], widths = width ,vert= False)
 plt.xlabel('age')
 plt.show()
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-weights = np.ones_like (nutri.age)/ nutri.age.count ()
+weights = np.ones_like (nutri.age)/ nutri.age.count()
 plt.hist(nutri.age ,bins =9, weights=weights , facecolor ='cyan',
              edgecolor ='black', linewidth =1)
-plt. xlabel ('age')
-plt. ylabel ('Proportion of Total')
-plt.show ()
+plt.xlabel('age')
+plt.ylabel('Proportion of Total')
+plt.show()
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 x = np.sort(nutri.age)
 y = np.linspace (0,1, len(nutri.age))
-plt.xlabel ('age')
-plt.ylabel ('Fn(x)')
+plt.xlabel('age')
+plt.ylabel('Fn(x)')
 plt.step(x,y)
 plt.xlim(x.min() ,x.max())
 plt.show()
@@ -77,12 +79,12 @@ import seaborn as sns
 sns.countplot (x='situation', hue = 'gender', data=nutri,
               hue_order = ['Male', 'Female'], palette = ['SkyBlue','Pink'],
               saturation = 1, edgecolor ='black')
-plt.legend (loc='upper center')
-plt.xlabel ('')
-plt.ylabel ('Counts')
+plt.legend(loc='upper center')
+plt.xlabel('')
+plt.ylabel('Counts')
 plt.show()
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-plt.scatter(nutri .height , nutri .weight , s=12 , marker ='o')
+plt.scatter(nutri.height , nutri .weight , s=12 , marker ='o')
 plt.xlabel('height')
 plt.ylabel('weight')
 plt.show()
@@ -96,13 +98,13 @@ styles = {0: ['o','red'], 1: ['^','blue']}
 for k in styles:
     grp = bwt[bwt.smoke == k]
     m,b = np.polyfit(grp.age , grp.bwt , 1) # fit a straight line
-    plt.scatter(grp.age , grp.bwt , c= styles [k][1] , s=15 , linewidth =0,
+    plt.scatter(grp.age , grp.bwt , c= styles[k][1] , s=15 , linewidth =0,
                  marker = styles[k][0])
     plt.plot(grp.age , m*grp.age + b, '-', color = styles[k][1])
 
 plt.xlabel('age')
 plt.ylabel('birth weight (g)')
-plt.legend(['non - smokers','smokers'],prop ={'size':8},loc =(0.5 ,0.8))
+plt.legend(['non - smokers','smokers'],prop={'size':8},loc=(0.5 ,0.8))
 plt.show()
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 males = nutri[nutri.gender == 'Male']
