@@ -29,8 +29,8 @@ bag = np.empty((n_estimators), dtype=object)
 bootstrap_ds_arr = np.empty((n_estimators), dtype=object)
 for i in range(n_estimators):
     # sample bootsraped dataset
-    ids = np.random.choice(range(0,len(x_test)),size=len(x_test),
-                     replace=True)
+    ids = np.random.choice(range(0,len(x_train)),size=len(x_train), replace=True)
+
     x_boot = x_train[ids]
     y_boot = y_train[ids]
     bootstrap_ds_arr[i] = np.unique(ids)
